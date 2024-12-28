@@ -1,0 +1,18 @@
+{
+message": `
+# Heading 1
+
+Simple little Markdown editor and previewer.
+
+Made using [Svelte
+  ](https: //svelte.dev/), [markdown-it](https://github.com/markdown-it/markdown-it), and [highlight.js](https://highlightjs.org/) for [High Seas](https://highseas.hackclub.com/) as well as for my [FreeCodeCamp Front End Development Libraries Certification](https://www.freecodecamp.org/learn/front-end-development-libraries/). Enjoy!
+
+\`\`\`cpp
+int main() {
+  std: :cout << "Hello, World!\\n";
+  return 0;
+  }
+\`\`\`
+
+This is an *emphasis* and **this text is bold and _italic_**.`
+}
