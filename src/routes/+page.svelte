@@ -4,7 +4,6 @@
 	import Toggle from 'svelte-toggle';
 
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
-	import { onMount } from 'svelte';
 
 	// https://markdown-it.github.io/markdown-it/#MarkdownIt.new
 	const md = markdownit().use(highlightjs);
@@ -27,13 +26,26 @@ This is an *emphasis* and **this text is bold and _italic_**.`);
 	let liveReload: boolean = $state(true);
 	liveReload = false; // on:toggle fires on page load
 	// svelte-ignore state_referenced_locally
+	// svelte-ignore non_reactive_update
 	let editorContentFreezed = editorContent;
 	let theme: string = $state('Light');
+	let isWarningShown = $state(true);
 </script>
 
 <link rel="stylesheet" href={theme === 'Light' ? '/styles/solarized-light.css' : ''} />
 
 <div class={`container ${theme === 'Dark' && 'container-dark'}`}>
+	{#if isWarningShown}
+		<div class="banner">
+			<p>
+				This project passes all the tests defined by the FCC test suite. However, the test suite is
+				outdated and requires using marked.js, which I refuse to use because the project assignment
+				did not require me to + markdown-it is superior.
+			</p>
+			<input type="checkbox" name="warning" id="warning" bind:checked={isWarningShown} />
+			<label for="warning" class="btn-ok">OK</label>
+		</div>
+	{/if}
 	<nav>
 		<div class="nav-item">
 			Live reload <Toggle
@@ -291,6 +303,22 @@ This is an *emphasis* and **this text is bold and _italic_**.`);
 	.editor-dark {
 		background-color: #202020;
 		color: white;
+	}
+
+	.banner {
+		padding: 1em;
+		background-color: #ffa0a0a0;
+	}
+
+	#warning {
+		display: none;
+	}
+
+	.btn-ok {
+		cursor: pointer;
+		padding: 0.5em 1em;
+		background-color: #f0f0f0;
+		border-radius: 0.25rem;
 	}
 
 	nav {
